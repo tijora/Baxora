@@ -1,57 +1,97 @@
-// --- 3D Floating Mesh Animation using Three.js ---
-function init3D() {
-    const container = document.getElementById('canvas-3d');
-    if (!container) return;
+// --- Theme Switcher (Dark / Light Mode) ---
+function toggleTheme() {
+    const html = document.getElementById('htmlTag');
+    const icon = document.getElementById('themeIcon');
+    const text = document.getElementById('themeText');
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
-    container.appendChild(renderer.domElement);
-
-    // Floating Golden Geometry
-    const geometry = new THREE.IcosahedronGeometry(2.5, 0);
-    const material = new THREE.MeshStandardMaterial({
-        color: 0xD4AF37,
-        wireframe: true,
-        metalness: 0.8,
-        roughness: 0.2
-    });
-    const sphere = new THREE.Mesh(geometry, material);
-    scene.add(sphere);
-
-    // Ambient and Point Lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-    scene.add(ambientLight);
-    
-    const pointLight = new THREE.PointLight(0xD4AF37, 2);
-    pointLight.position.set(10, 10, 10);
-    scene.add(pointLight);
-
-    camera.position.z = 6;
-
-    // Animation Loop
-    function animate() {
-        requestAnimationFrame(animate);
-        sphere.rotation.x += 0.003;
-        sphere.rotation.y += 0.005;
-        renderer.render(scene, camera);
+    if (html.classList.contains('dark')) {
+        html.classList.remove('dark');
+        icon.className = 'fa-solid fa-sun';
+        text.innerText = 'Light';
+    } else {
+        html.classList.add('dark');
+        icon.className = 'fa-solid fa-moon';
+        text.innerText = 'Dark';
     }
-    animate();
-
-    // Screen Resize Handling
-    window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-    });
 }
 
-document.addEventListener('DOMContentLoaded', init3D);
+// --- Tab Switcher (Marketplace vs Dashboard) ---
+function switchTab(tabName) {
+    const marketplace = document.getElementById('marketplaceTab');
+    const dashboard = document.getElementById('dashboardTab');
 
-// --- AI Chatbot & Modal Functions ---
+    if (tabName === 'dashboard') {
+        marketplace.classList.add('hidden');
+        dashboard.classList.remove('hidden');
+    } else {
+        dashboard.classList.add('hidden');
+        marketplace.classList.remove('hidden');
+    }
+}
+
+// --- See More Products Dynamic Loading ---
+function loadMoreProducts() {
+    const grid = document.getElementById('productGrid');
+    
+    const extraProducts = [
+        {
+            title: "Leather Travel Duffle",
+            category: "Accessories",
+            price: "$650",
+            img: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=800&auto=format&fit=crop",
+            desc: "Handcrafted full-grain Italian leather duffle bag."
+        },
+        {
+            title: "Smart Ergonomic Chair",
+            category: "Furniture",
+            price: "$890",
+            img: "https://images.unsplash.com/photo-1580481072645-022f9a6d1270?q=80&w=800&auto=format&fit=crop",
+            desc: "Custom lumbar support with breathable mesh design."
+        },
+        {
+            title: "Minimalist Mechanical Keyboard",
+            category: "Electronics",
+            price: "$180",
+            img: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?q=80&w=800&auto=format&fit=crop",
+            desc: "Custom RGB mechanical switch aluminum body board."
+        }
+    ];
+
+    extraProducts.forEach(p => {
+        const card = document.createElement('div');
+        card.className = "bg-slate-800 dark:bg-slate-800/80 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-yellow-400/50 transition duration-300";
+        card.innerHTML = `
+            <img src="${p.img}" class="w-full h-56 object-cover" alt="Product">
+            <div class="p-5">
+                <span class="text-xs font-bold text-yellow-400 uppercase">${p.category}</span>
+                <h3 class="text-lg font-bold text-white mt-1">${p.title}</h3>
+                <p class="text-xs text-slate-400 mt-1 line-clamp-2">${p.desc}</p>
+                <div class="flex justify-between items-center mt-4">
+                    <span class="text-yellow-400 font-extrabold text-lg">${p.price}</span>
+                    <button onclick="addToCart()" class="px-3.5 py-1.5 bg-yellow-400 text-slate-950 font-bold text-xs rounded-xl hover:bg-yellow-300 transition">Add to Cart</button>
+                </div>
+            </div>
+        `;
+        grid.appendChild(card);
+    });
+
+    document.getElementById('visibleCount').innerText = "6";
+    document.getElementById('seeMoreContainer').classList.add('hidden');
+}
+
+// --- Cart Counter ---
+let count = 2;
+function addToCart() {
+    count++;
+    document.getElementById('cartCount').innerText = count;
+    alert("Item added to cart!");
+}
+
+function toggleCart() {
+    alert("Cart View: You have " + count + " items in your bag.");
+}
+
+// --- AI Chatbot Modal Functions ---
 function openAIChat() {
     document.getElementById('aiModal').classList.remove('hidden');
 }
@@ -60,40 +100,25 @@ function closeAIChat() {
     document.getElementById('aiModal').classList.add('hidden');
 }
 
-function toggleCart() {
-    alert("Baxora Luxury Cart: Item reserved in your private session.");
-}
-
 function sendMessage() {
     const input = document.getElementById('userInput');
     const text = input.value.trim();
     if (!text) return;
 
     const container = document.getElementById('chatContainer');
+    
+    const userMsg = document.createElement('div');
+    userMsg.className = "bg-yellow-400/20 text-yellow-200 p-2.5 rounded-xl text-xs ml-auto max-w-[80%]";
+    userMsg.innerText = text;
+    container.appendChild(userMsg);
 
-    // Add User Message
-    const userDiv = document.createElement('div');
-    userDiv.className = 'flex gap-3 justify-end';
-    userDiv.innerHTML = `
-        <div class="bg-yellow-500/20 border border-yellow-500/40 p-3 rounded-xl text-sm text-yellow-200 max-w-xs">
-            ${text}
-        </div>
-    `;
-    container.appendChild(userDiv);
     input.value = '';
-    container.scrollTop = container.scrollHeight;
 
-    // AI Bot Reply
     setTimeout(() => {
-        const aiDiv = document.createElement('div');
-        aiDiv.className = 'flex gap-3';
-        aiDiv.innerHTML = `
-            <div class="w-8 h-8 rounded-full bg-yellow-500/20 text-yellow-400 flex items-center justify-center font-bold">B</div>
-            <div class="bg-gray-800/80 p-3 rounded-xl text-sm max-w-xs text-gray-200">
-                Searching verified luxury ateliers for "${text}"... Connecting with our bespoke desk.
-            </div>
-        `;
-        container.appendChild(aiDiv);
+        const aiMsg = document.createElement('div');
+        aiMsg.className = "bg-slate-800 text-slate-200 p-2.5 rounded-xl text-xs max-w-[80%]";
+        aiMsg.innerText = `Orylo AI: Searching records for "${text}"... How else can I assist?`;
+        container.appendChild(aiMsg);
         container.scrollTop = container.scrollHeight;
-    }, 800);
+    }, 600);
 }
