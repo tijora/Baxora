@@ -3,207 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orylo - World-Class Marketplace</title>
+    <title>Baxora - Ultra Luxury Marketplace</title>
 
-    <!-- Tailwind CSS CDN -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            darkMode: 'class',
-        }
+        tailwind.config = { darkMode: 'class' }
     </script>
+
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-slate-900 text-slate-100 dark:bg-slate-900 dark:text-slate-100 font-sans transition-colors duration-300 min-h-screen flex flex-col">
+<body class="bg-[#0b0f19] text-gray-100 font-sans antialiased transition-colors duration-500 min-h-screen flex flex-col overflow-x-hidden">
 
     <!-- 1. TOP ANNOUNCEMENT BAR -->
-    <div class="bg-yellow-500 text-slate-950 font-semibold px-4 py-1.5 text-xs flex justify-between items-center">
+    <div class="bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 text-slate-950 font-bold px-4 py-1.5 text-xs flex justify-between items-center shadow-md">
         <div class="flex items-center gap-4">
-            <span><i class="fa-solid fa-truck-fast mr-1"></i> Free Global Express Shipping on Orders Over $500</span>
+            <span><i class="fa-solid fa-crown mr-1"></i> Baxora Private Atelier - Authenticated Worldwide Luxury</span>
         </div>
         <div class="flex items-center gap-4">
-            <!-- Theme Toggle Button -->
-            <button onclick="toggleTheme()" class="bg-slate-900 text-yellow-400 px-2.5 py-0.5 rounded-full text-xs font-bold flex items-center gap-1.5 hover:bg-slate-800 transition">
+            <button onclick="toggleTheme()" class="bg-slate-950 text-yellow-400 px-3 py-0.5 rounded-full text-xs font-semibold flex items-center gap-1.5 hover:scale-105 transition">
                 <i id="themeIcon" class="fa-solid fa-moon"></i>
                 <span id="themeText">Dark</span>
             </button>
-            <select class="bg-transparent font-bold focus:outline-none cursor-pointer">
+            <select class="bg-transparent font-bold focus:outline-none cursor-pointer text-xs">
                 <option value="USD">$ USD</option>
                 <option value="EUR">€ EUR</option>
             </select>
         </div>
     </div>
 
-    <!-- 2. MAIN HEADER & NAVIGATION BAR -->
-    <header class="sticky top-0 z-40 bg-slate-800/90 dark:bg-slate-900/90 backdrop-blur-xl border-b border-slate-700/60 px-4 md:px-8 py-3.5">
+    <!-- 2. MAIN NAVIGATION HEADER -->
+    <header class="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-xl border-b border-amber-500/20 px-4 md:px-8 py-3.5">
         <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
             
             <!-- Logo -->
-            <a href="#" onclick="switchTab('marketplace')" class="text-3xl font-black tracking-wider text-yellow-400">
-                ORYLO
+            <a href="#" onclick="switchTab('marketplace')" class="text-3xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-amber-400 to-yellow-600">
+                BAXORA
             </a>
 
             <!-- Search Bar -->
-            <div class="relative flex-1 max-w-xl hidden md:block">
+            <div class="relative flex-1 max-w-lg hidden md:block">
                 <div class="relative flex items-center">
-                    <input type="text" placeholder="Search products, brands, categories..." class="w-full bg-slate-700/50 dark:bg-slate-800/80 border border-slate-600 dark:border-slate-700 rounded-full pl-11 pr-24 py-2 text-sm text-slate-200 placeholder-slate-400 focus:outline-none focus:border-yellow-400 transition">
-                    <i class="fa-solid fa-magnifying-glass absolute left-4 text-slate-400"></i>
-                    <button class="absolute right-1 px-4 py-1.5 bg-yellow-400 text-slate-950 font-bold text-xs rounded-full hover:bg-yellow-300 transition">
+                    <input type="text" placeholder="Search horology, fine art, bespoke items..." class="w-full bg-slate-900/90 border border-slate-700/80 rounded-full pl-11 pr-24 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-amber-400 transition">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 text-slate-500"></i>
+                    <button class="absolute right-1 px-4 py-1.5 bg-gradient-to-r from-amber-400 to-yellow-500 text-slate-950 font-bold text-xs rounded-full hover:brightness-110 transition">
                         Search
                     </button>
                 </div>
             </div>
 
-            <!-- Navigation Links & User Actions -->
-            <div class="flex items-center gap-4 md:gap-6">
-                <button onclick="switchTab('marketplace')" class="text-xs font-bold uppercase tracking-wider hover:text-yellow-400 transition">Marketplace</button>
-                <button onclick="switchTab('dashboard')" class="text-xs font-bold uppercase tracking-wider hover:text-yellow-400 transition">Dashboard</button>
+            <!-- Navigation Links -->
+            <div class="flex items-center gap-5">
+                <button onclick="switchTab('marketplace')" class="text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-amber-400 transition">Marketplace</button>
+                <button onclick="switchTab('dashboard')" class="text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-amber-400 transition">Dashboard</button>
                 
-                <button onclick="openAIChat()" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-yellow-400/40 bg-yellow-400/10 text-yellow-400 text-xs font-bold hover:bg-yellow-400/20 transition">
-                    <i class="fa-solid fa-sparkles"></i> AI Support
+                <button onclick="openAIChat()" class="hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-amber-500/40 bg-amber-500/10 text-amber-400 text-xs font-semibold hover:bg-amber-500/20 transition">
+                    <i class="fa-solid fa-sparkles"></i> Concierge AI
                 </button>
 
-                <button onclick="toggleCart()" class="text-slate-300 hover:text-yellow-400 transition relative">
+                <button onclick="toggleCart()" class="text-slate-300 hover:text-amber-400 transition relative">
                     <i class="fa-solid fa-bag-shopping text-xl"></i>
-                    <span id="cartCount" class="absolute -top-1.5 -right-2 bg-yellow-400 text-slate-950 font-bold text-[10px] w-4 h-4 rounded-full flex items-center justify-center">2</span>
+                    <span id="cartCount" class="absolute -top-1.5 -right-2 bg-amber-400 text-slate-950 font-bold text-[10px] w-4 h-4 rounded-full flex items-center justify-center">1</span>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- MAIN CONTENT CONTAINER -->
+    <!-- MAIN VIEW CONTAINER -->
     <main class="flex-1">
 
-        <!-- TAB 1: MARKETPLACE VIEW -->
+        <!-- TAB 1: MARKETPLACE -->
         <div id="marketplaceTab">
-            <!-- Hero Banner -->
-            <section class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border-b border-slate-800 py-16 px-6 text-center">
-                <div class="max-w-4xl mx-auto">
-                    <span class="px-3 py-1 rounded-full border border-yellow-400/30 bg-yellow-400/10 text-yellow-400 text-xs font-bold uppercase tracking-widest mb-4 inline-block">Next-Gen Shopping</span>
-                    <h1 class="text-4xl md:text-6xl font-black text-white mb-4">Discover Extraordinary Products</h1>
-                    <p class="text-slate-400 text-base md:text-lg mb-6">Explore thousands of verified items from top global sellers on Orylo.</p>
+            
+            <!-- Animated Hero Section -->
+            <section class="relative py-24 px-6 text-center border-b border-amber-500/10 bg-gradient-to-b from-slate-950 via-slate-900 to-[#0b0f19] overflow-hidden">
+                <div class="absolute -top-20 -left-20 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl"></div>
+                <div class="absolute top-1/2 -right-20 w-80 h-80 bg-yellow-600/10 rounded-full blur-3xl"></div>
+
+                <div class="max-w-4xl mx-auto relative z-10">
+                    <span id="heroBadge" class="px-4 py-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-400 text-xs font-bold tracking-widest uppercase mb-6 inline-block">Curated Haute Sourcing</span>
+                    <h1 id="heroTitle" class="text-4xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-100 via-amber-300 to-yellow-600 leading-tight mb-6">Unrivaled Excellence in Every Detail</h1>
+                    <p id="heroDesc" class="text-slate-400 text-base md:text-lg mb-8 max-w-2xl mx-auto">Explore verified timepieces, fine art, and rare luxury assets available on Baxora.</p>
                 </div>
             </section>
 
-            <!-- Product Grid Section -->
-            <section class="py-12 px-6 max-w-7xl mx-auto">
-                <div class="flex justify-between items-center mb-8">
-                    <h2 class="text-2xl font-bold text-white">Trending Products</h2>
-                    <span class="text-xs text-slate-400">Showing <span id="visibleCount">3</span> of 6 Items</span>
+            <!-- Product Grid -->
+            <section class="py-16 px-6 max-w-7xl mx-auto">
+                <div class="flex justify-between items-end mb-10">
+                    <div>
+                        <span class="text-amber-400 text-xs font-bold uppercase tracking-widest">Masterpieces</span>
+                        <h2 class="text-2xl md:text-3xl font-bold text-white mt-1">Featured Inventory</h2>
+                    </div>
+                    <span class="text-xs text-slate-400">Showing <span id="visibleCount">3</span> Products</span>
                 </div>
 
-                <!-- Cards Grid -->
-                <div id="productGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Product Card 1 -->
-                    <div class="bg-slate-800 dark:bg-slate-800/80 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-yellow-400/50 transition duration-300">
-                        <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=800&auto=format&fit=crop" class="w-full h-56 object-cover" alt="Product">
-                        <div class="p-5">
-                            <span class="text-xs font-bold text-yellow-400 uppercase">Watches</span>
-                            <h3 class="text-lg font-bold text-white mt-1">Chronograph Automatic</h3>
-                            <p class="text-xs text-slate-400 mt-1 line-clamp-2">Premium sapphire crystal movement timepiece with leather strap.</p>
-                            <div class="flex justify-between items-center mt-4">
-                                <span class="text-yellow-400 font-extrabold text-lg">$2,450</span>
-                                <button onclick="addToCart()" class="px-3.5 py-1.5 bg-yellow-400 text-slate-950 font-bold text-xs rounded-xl hover:bg-yellow-300 transition">Add to Cart</button>
+                <div id="productGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div class="product-card bg-slate-900/60 rounded-2xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition duration-500 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(212,175,55,0.15)]">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover hover:scale-110 transition duration-700" alt="Watch">
+                        </div>
+                        <div class="p-6">
+                            <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider">Haute Horology</span>
+                            <h3 class="text-lg font-bold text-white mt-1">Vanguard Tourbillon</h3>
+                            <p class="text-xs text-slate-400 mt-2 line-clamp-2">Titanium skeleton dial with custom floating tourbillon assembly.</p>
+                            <div class="flex justify-between items-center mt-6 pt-4 border-t border-slate-800">
+                                <span class="text-amber-400 font-extrabold text-lg">$145,000</span>
+                                <button onclick="addToCart()" class="px-4 py-2 bg-gradient-to-r from-amber-400 to-yellow-500 text-slate-950 font-bold text-xs rounded-xl hover:brightness-110 transition">Add to Cart</button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Product Card 2 -->
-                    <div class="bg-slate-800 dark:bg-slate-800/80 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-yellow-400/50 transition duration-300">
-                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=800&auto=format&fit=crop" class="w-full h-56 object-cover" alt="Product">
-                        <div class="p-5">
-                            <span class="text-xs font-bold text-yellow-400 uppercase">Audio</span>
-                            <h3 class="text-lg font-bold text-white mt-1">Wireless ANC Headphones</h3>
-                            <p class="text-xs text-slate-400 mt-1 line-clamp-2">Active noise canceling acoustic drivers with 40-hour battery life.</p>
-                            <div class="flex justify-between items-center mt-4">
-                                <span class="text-yellow-400 font-extrabold text-lg">$399</span>
-                                <button onclick="addToCart()" class="px-3.5 py-1.5 bg-yellow-400 text-slate-950 font-bold text-xs rounded-xl hover:bg-yellow-300 transition">Add to Cart</button>
+                    <!-- Card 2 -->
+                    <div class="product-card bg-slate-900/60 rounded-2xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition duration-500 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(212,175,55,0.15)]">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover hover:scale-110 transition duration-700" alt="Art">
+                        </div>
+                        <div class="p-6">
+                            <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider">Fine Art</span>
+                            <h3 class="text-lg font-bold text-white mt-1">Abstract Aurora Canvas</h3>
+                            <p class="text-xs text-slate-400 mt-2 line-clamp-2">Original acrylic canvas with 24k gold-leaf embedding.</p>
+                            <div class="flex justify-between items-center mt-6 pt-4 border-t border-slate-800">
+                                <span class="text-amber-400 font-extrabold text-lg">$82,000</span>
+                                <button onclick="addToCart()" class="px-4 py-2 bg-gradient-to-r from-amber-400 to-yellow-500 text-slate-950 font-bold text-xs rounded-xl hover:brightness-110 transition">Add to Cart</button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Product Card 3 -->
-                    <div class="bg-slate-800 dark:bg-slate-800/80 rounded-2xl overflow-hidden border border-slate-700/60 hover:border-yellow-400/50 transition duration-300">
-                        <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=800&auto=format&fit=crop" class="w-full h-56 object-cover" alt="Product">
-                        <div class="p-5">
-                            <span class="text-xs font-bold text-yellow-400 uppercase">Art</span>
-                            <h3 class="text-lg font-bold text-white mt-1">Modern Abstract Canvas</h3>
-                            <p class="text-xs text-slate-400 mt-1 line-clamp-2">Hand-painted acrylic artwork with gold leaf embellishments.</p>
-                            <div class="flex justify-between items-center mt-4">
-                                <span class="text-yellow-400 font-extrabold text-lg">$1,200</span>
-                                <button onclick="addToCart()" class="px-3.5 py-1.5 bg-yellow-400 text-slate-950 font-bold text-xs rounded-xl hover:bg-yellow-300 transition">Add to Cart</button>
+                    <!-- Card 3 -->
+                    <div class="product-card bg-slate-900/60 rounded-2xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition duration-500 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(212,175,55,0.15)]">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover hover:scale-110 transition duration-700" alt="Headphones">
+                        </div>
+                        <div class="p-6">
+                            <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider">Acoustic Art</span>
+                            <h3 class="text-lg font-bold text-white mt-1">Aura Gold Headphones</h3>
+                            <p class="text-xs text-slate-400 mt-2 line-clamp-2">Bespoke planar magnetic acoustics wrapped in hand-stitched leather.</p>
+                            <div class="flex justify-between items-center mt-6 pt-4 border-t border-slate-800">
+                                <span class="text-amber-400 font-extrabold text-lg">$12,500</span>
+                                <button onclick="addToCart()" class="px-4 py-2 bg-gradient-to-r from-amber-400 to-yellow-500 text-slate-950 font-bold text-xs rounded-xl hover:brightness-110 transition">Add to Cart</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- SEE MORE BUTTON -->
-                <div id="seeMoreContainer" class="text-center mt-10">
-                    <button onclick="loadMoreProducts()" class="px-8 py-3 bg-slate-800 border border-slate-700 hover:border-yellow-400 text-yellow-400 font-bold text-xs rounded-full transition shadow-lg">
-                        See More Products <i class="fa-solid fa-chevron-down ml-2"></i>
+                <div id="seeMoreContainer" class="text-center mt-12">
+                    <button onclick="loadMoreProducts()" class="px-8 py-3.5 bg-slate-900 border border-amber-500/40 text-amber-400 font-bold text-xs rounded-full hover:bg-amber-500/10 transition shadow-lg">
+                        See More Collection <i class="fa-solid fa-arrow-down ml-2"></i>
                     </button>
                 </div>
             </section>
         </div>
 
-        <!-- TAB 2: USER DASHBOARD VIEW -->
-        <div id="dashboardTab" class="hidden py-10 px-6 max-w-7xl mx-auto">
-            <h2 class="text-3xl font-black text-white mb-6">User Dashboard</h2>
-
-            <!-- Analytics Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700">
-                    <span class="text-xs text-slate-400 block mb-1">Total Orders</span>
-                    <span class="text-2xl font-black text-white">12</span>
+        <!-- TAB 2: DASHBOARD VIEW -->
+        <div id="dashboardTab" class="hidden py-12 px-6 max-w-7xl mx-auto">
+            <h2 class="text-3xl font-black text-white mb-6">Baxora Private Dashboard</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800">
+                    <span class="text-xs text-slate-400 block mb-1">Total Acquisitions</span>
+                    <span class="text-2xl font-black text-white">4 Items</span>
                 </div>
-                <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700">
-                    <span class="text-xs text-slate-400 block mb-1">Wishlist Items</span>
-                    <span class="text-2xl font-black text-yellow-400">5</span>
+                <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800">
+                    <span class="text-xs text-slate-400 block mb-1">Escrow Balance</span>
+                    <span class="text-2xl font-black text-amber-400">$145,000.00</span>
                 </div>
-                <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700">
-                    <span class="text-xs text-slate-400 block mb-1">Wallet Balance</span>
-                    <span class="text-2xl font-black text-emerald-400">$1,480.00</span>
-                </div>
-                <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700">
-                    <span class="text-xs text-slate-400 block mb-1">Support Tickets</span>
-                    <span class="text-2xl font-black text-sky-400">0 Active</span>
-                </div>
-            </div>
-
-            <!-- Recent Orders Table -->
-            <div class="bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden">
-                <div class="p-5 border-b border-slate-700">
-                    <h3 class="font-bold text-white">Recent Orders</h3>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-xs text-slate-300">
-                        <thead class="bg-slate-900/60 text-slate-400 uppercase">
-                            <tr>
-                                <th class="p-4">Order ID</th>
-                                <th class="p-4">Date</th>
-                                <th class="p-4">Total</th>
-                                <th class="p-4">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-700">
-                            <tr>
-                                <td class="p-4 font-mono">#ORY-9821</td>
-                                <td class="p-4">May 14, 2026</td>
-                                <td class="p-4 font-bold text-white">$2,450.00</td>
-                                <td class="p-4"><span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800">Delivered</span></td>
-                            </tr>
-                            <tr>
-                                <td class="p-4 font-mono">#ORY-9754</td>
-                                <td class="p-4">May 02, 2026</td>
-                                <td class="p-4 font-bold text-white">$399.00</td>
-                                <td class="p-4"><span class="px-2 py-0.5 rounded bg-yellow-950 text-yellow-400 border border-yellow-800">Processing</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800">
+                    <span class="text-xs text-slate-400 block mb-1">VIP Tier</span>
+                    <span class="text-2xl font-black text-yellow-500">Black Diamond</span>
                 </div>
             </div>
         </div>
@@ -211,35 +186,34 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-slate-950 border-t border-slate-800 text-slate-400 text-xs py-10 px-6 mt-auto">
+    <footer class="bg-slate-950 border-t border-slate-900 text-slate-500 text-xs py-10 px-6 mt-auto">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <p>&copy; 2026 Orylo Marketplace. All rights reserved.</p>
-            <div class="flex gap-4">
-                <a href="#" class="hover:text-yellow-400">Privacy Policy</a>
-                <a href="#" class="hover:text-yellow-400">Terms of Service</a>
-                <a href="#" class="hover:text-yellow-400">Help Center</a>
+            <p>&copy; 2026 Baxora Atelier Sourcing AG. All rights reserved.</p>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-amber-400">Privacy Policy</a>
+                <a href="#" class="hover:text-amber-400">Terms of Escrow</a>
             </div>
         </div>
     </footer>
 
-    <!-- AI CHATBOT MODAL -->
-    <div id="aiModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
-        <div class="w-full max-w-md rounded-2xl p-5 border border-slate-700 bg-slate-900 flex flex-col h-[480px]">
+    <!-- AI CHAT MODAL -->
+    <div id="aiModal" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden z-50 flex items-center justify-center p-4">
+        <div class="w-full max-w-md rounded-2xl p-5 border border-amber-500/30 bg-slate-950 flex flex-col h-[480px]">
             <div class="flex justify-between items-center pb-3 border-b border-slate-800">
-                <h3 class="font-bold text-yellow-400 flex items-center gap-2"><i class="fa-solid fa-robot"></i> Orylo AI Assistant</h3>
+                <h3 class="font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-robot"></i> Baxora AI Concierge</h3>
                 <button onclick="closeAIChat()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
             <div id="chatContainer" class="flex-1 overflow-y-auto py-3 space-y-3">
-                <div class="bg-slate-800 p-3 rounded-xl text-xs text-slate-200">Hello! How can I help you find products or manage your order today?</div>
+                <div class="bg-slate-900 p-3 rounded-xl text-xs text-slate-200">Welcome to Baxora Concierge. What rare piece can I source for you today?</div>
             </div>
             <div class="flex gap-2 pt-3 border-t border-slate-800">
-                <input id="userInput" type="text" placeholder="Ask AI..." class="flex-1 bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-yellow-400 text-white">
-                <button onclick="sendMessage()" class="px-3 py-2 bg-yellow-400 text-slate-950 font-bold rounded-xl text-xs hover:bg-yellow-300">Send</button>
+                <input id="userInput" type="text" placeholder="Type message..." class="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-amber-400 text-white">
+                <button onclick="sendMessage()" class="px-4 py-2 bg-gradient-to-r from-amber-400 to-yellow-500 text-slate-950 font-bold rounded-xl text-xs">Send</button>
             </div>
         </div>
     </div>
 
-    <!-- JavaScript File -->
+    <!-- External Script -->
     <script src="script.js"></script>
 </body>
 </html>
