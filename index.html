@@ -1,374 +1,221 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shooz | Premium Footwear</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            shooz: {
-              darkteal: '#0B1B1F',
-              deepteal: '#122B31',
-              accentgold: '#D4AF37',
-              lightgold: '#F3E5AB',
-              mutedslate: '#64748B'
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shooz | Premium Footwear</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#CCA43B',
+                        darkBg: '#0B1315',
+                        lightBg: '#F3F4F6',
+                    }
+                }
             }
-          },
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            serif: ['Playfair Display', 'serif']
-          }
         }
-      }
-    }
-  </script>
-  <style>
-    .glass {
-      background: rgba(18, 43, 49, 0.7);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(212, 175, 55, 0.15);
-    }
-    .gold-gradient-text {
-      background: linear-gradient(135deg, #FFF099 0%, #D4AF37 50%, #AA7C11 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    @keyframes floatSlow {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-12px) rotate(2deg); }
-    }
-    .animate-float {
-      animation: floatSlow 5s ease-in-out infinite;
-    }
-  </style>
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+    </style>
 </head>
-<body class="bg-shooz-darkteal text-slate-100 transition-colors duration-300 font-sans selection:bg-shooz-accentgold selection:text-black">
-
-  <header class="fixed top-0 left-0 right-0 z-40 glass border-b border-shooz-accentgold/20">
-    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-1 group">
-        <span class="font-serif text-3xl font-bold tracking-tight text-shooz-accentgold group-hover:text-white transition-colors">
-          <span class="inline-block relative">S<i data-lucide="footprints" class="w-4 h-4 absolute -bottom-1 -left-1 text-shooz-accentgold transform -rotate-45"></i></span>hooz
-        </span>
-      </a>
-      <nav class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
-        <a href="#collections" class="hover:text-shooz-accentgold transition-colors">A-Z Catalog</a>
-        <a href="#brands" class="hover:text-shooz-accentgold transition-colors">Famous Brands</a>
-        <a href="#ai-assistant" onclick="toggleAiDrawer()" class="text-shooz-accentgold hover:underline flex items-center gap-1">
-          <i data-lucide="sparkles" class="w-4 h-4"></i> AI Stylist Assistant
-        </a>
-      </nav>
-      <div class="flex items-center gap-5">
-        <button onclick="toggleAiDrawer()" class="p-2 rounded-full hover:bg-white/10 text-shooz-accentgold transition-colors flex items-center gap-2 border border-shooz-accentgold/30 px-3 py-1.5 text-xs font-semibold">
-          <i data-lucide="bot" class="w-4 h-4"></i>
-          <span class="hidden sm:inline">Ask AI Assistant</span>
-        </button>
-        <button id="cartBtn" onclick="toggleCartDrawer()" class="p-2 rounded-full hover:bg-white/10 transition-colors relative">
-          <i data-lucide="shopping-bag" class="w-5 h-5 text-shooz-accentgold"></i>
-          <span id="cartCount" class="absolute top-0 right-0 w-4 h-4 bg-shooz-accentgold text-xs font-bold rounded-full flex items-center justify-center text-black">0</span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <section class="min-h-screen pt-28 pb-16 flex items-center relative overflow-hidden">
-    <div class="absolute top-1/4 left-10 w-96 h-96 bg-shooz-accentgold/10 rounded-full mix-blend-screen filter blur-3xl opacity-50 animate-pulse"></div>
-    <div class="absolute bottom-10 right-10 w-80 h-80 bg-shooz-deepteal rounded-full mix-blend-screen filter blur-3xl opacity-40"></div>
-    
-    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
-      <div class="space-y-6">
-        <span class="inline-block py-1.5 px-4 rounded-full text-xs font-semibold uppercase tracking-widest bg-shooz-deepteal text-shooz-accentgold border border-shooz-accentgold/40">Luxury Footwear Collection 2026</span>
-        <h1 class="text-5xl lg:text-7xl font-serif font-bold leading-tight">Step Into <br><span class="gold-gradient-text">Elegance & Perfection</span></h1>
-        <p class="text-slate-300 max-w-md text-base leading-relaxed">Explore iconic originals from Zara, Bata, Adidas, Puma, Skechers, Chinese luxury brands, heels, boots, and athletic wear.</p>
-        <div class="flex flex-wrap items-center gap-4 pt-4">
-          <a href="#collections" class="px-8 py-4 bg-shooz-accentgold hover:bg-yellow-500 text-black font-semibold rounded-full transition-all shadow-lg shadow-shooz-accentgold/20 flex items-center gap-2">
-            Explore All Collections <i data-lucide="arrow-right" class="w-4 h-4"></i>
-          </a>
-          <button onclick="quickBuy('Zara Royal Leather Boot', 320, 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80')" class="px-8 py-4 glass hover:bg-white/10 text-white font-medium rounded-full transition-all border border-shooz-accentgold/40">
-            Buy Featured Now
-          </button>
-        </div>
-      </div>
-
-      <div class="relative flex justify-center items-center">
-        <div class="w-80 h-80 md:w-[420px] md:h-[420px] rounded-3xl bg-gradient-to-tr from-shooz-accentgold/20 via-transparent to-shooz-deepteal p-1 animate-float">
-          <div class="w-full h-full bg-shooz-deepteal/80 rounded-3xl flex flex-col items-center justify-center relative overflow-hidden glass p-4">
-            <img id="heroImage" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80" alt="Featured Shoes" class="w-full h-64 object-cover rounded-2xl shadow-2xl transition-all duration-700 hover:scale-105">
-            <div class="mt-4 text-center">
-              <span class="block text-sm font-semibold text-shooz-accentgold tracking-wider uppercase">Nike Air Jordan - Gold Edition</span>
-              <p class="text-xs text-slate-300">Original Luxury Leather Edition</p>
+<body class="bg-lightBg dark:bg-darkBg text-gray-900 dark:text-white transition-colors duration-500">
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-white/90 dark:bg-darkBg/90 backdrop-blur-md shadow-sm border-b border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="#" class="text-3xl font-bold tracking-tighter text-gray-900 dark:text-white">Shooz</a>
+                <div class="hidden md:flex space-x-8 items-center font-medium">
+                    <a href="#catalog" class="hover:text-gold transition-colors">Catalog</a>
+                    <a href="#brands" class="hover:text-gold transition-colors">Brands</a>
+                    <button id="themeToggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors">
+                        <i class="fa-solid fa-sun dark:hidden text-gold"></i>
+                        <i class="fa-solid fa-moon hidden dark:block text-gold"></i>
+                    </button>
+                    <a href="#" class="bg-gold text-white px-8 py-3 rounded-full hover:shadow-lg hover:shadow-gold/30 transition-all transform hover:-translate-y-0.5">Explore Now</a>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </nav>
 
-  <section id="brands" class="py-10 border-y border-shooz-accentgold/20 glass">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-      <p class="text-xs font-semibold uppercase tracking-widest text-shooz-accentgold mb-6">Authentic Original Brands Available</p>
-      <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-80 font-bold text-lg text-slate-300">
-        <span class="hover:text-shooz-accentgold transition-colors">ZARA</span>
-        <span class="hover:text-shooz-accentgold transition-colors">BATA</span>
-        <span class="hover:text-shooz-accentgold transition-colors">SERVICE</span>
-        <span class="hover:text-shooz-accentgold transition-colors">ADIDAS</span>
-        <span class="hover:text-shooz-accentgold transition-colors">PUMA</span>
-        <span class="hover:text-shooz-accentgold transition-colors">SKECHERS</span>
-        <span class="hover:text-shooz-accentgold transition-colors">CHINESE LUXURY</span>
-      </div>
-    </div>
-  </section>
-
-  <section id="collections" class="py-20 max-w-7xl mx-auto px-6">
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
-      <div>
-        <h2 class="text-3xl font-serif font-bold">A-Z Featured Footwear Catalog</h2>
-        <p class="text-slate-400 text-sm mt-1">Authentic real photos, heel aids, original boots, sneakers, and designer heels</p>
-      </div>
-      <div class="flex flex-wrap gap-2 text-sm">
-        <button onclick="filterCategory('all')" class="cat-btn px-4 py-2 rounded-full bg-shooz-accentgold text-black font-semibold">All</button>
-        <button onclick="filterCategory('heels')" class="cat-btn px-4 py-2 rounded-full glass hover:bg-shooz-accentgold/20">Heels & Heel Aids</button>
-        <button onclick="filterCategory('boots')" class="cat-btn px-4 py-2 rounded-full glass hover:bg-shooz-accentgold/20">Boots</button>
-        <button onclick="filterCategory('sneakers')" class="cat-btn px-4 py-2 rounded-full glass hover:bg-shooz-accentgold/20">Adidas & Puma</button>
-        <button onclick="filterCategory('skechers')" class="cat-btn px-4 py-2 rounded-full glass hover:bg-shooz-accentgold/20">Skechers & Chinese Brands</button>
-      </div>
-    </div>
-
-    <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      </div>
-  </section>
-
-  <div id="aiDrawer" class="fixed inset-y-0 right-0 w-full sm:w-96 glass z-50 transform translate-x-full transition-transform duration-300 p-6 flex flex-col justify-between border-l border-shooz-accentgold/30">
-    <div>
-      <div class="flex justify-between items-center mb-6">
-        <h3 class="text-lg font-bold flex items-center gap-2 text-shooz-accentgold">
-          <i data-lucide="bot" class="w-5 h-5"></i> AI Footwear Assistant
-        </h3>
-        <button onclick="toggleAiDrawer()" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-6 h-6"></i></button>
-      </div>
-      <p class="text-xs text-slate-300 mb-4">Puchhiye: "Meri height 5'6 hai aur outfit black hai, mujh par kaun sa boot suit karega?"</p>
-      
-      <div id="aiChatBox" class="h-80 overflow-y-auto space-y-3 p-3 glass rounded-xl text-xs">
-        <div class="bg-shooz-deepteal p-3 rounded-lg border border-shooz-accentgold/20">
-          <strong>AI Assistant:</strong> Assalamu alaikum! Main aapka AI Stylist hun. Apni height, color preference, ya event type bataiye, main aapke liye perfect heels ya boots suggest karunga!
-        </div>
-      </div>
-    </div>
-
-    <div class="mt-4 space-y-2">
-      <input id="aiInput" type="text" placeholder="Apna question likhein (Height, color, etc)..." class="w-full px-4 py-3 bg-shooz-deepteal rounded-xl text-sm border border-shooz-accentgold/30 focus:outline-none focus:border-shooz-accentgold text-white">
-      <button onclick="askAiAssistant()" class="w-full py-3 bg-shooz-accentgold text-black font-semibold rounded-xl hover:bg-yellow-500 transition-colors">Ask AI Assistant</button>
-    </div>
-  </div>
-
-  <div id="cartDrawer" class="fixed inset-y-0 right-0 w-full sm:w-96 glass z-50 transform translate-x-full transition-transform duration-300 p-6 flex flex-col justify-between border-l border-shooz-accentgold/30">
-    <div>
-      <div class="flex justify-between items-center mb-6">
-        <h3 class="text-lg font-bold flex items-center gap-2 text-shooz-accentgold">
-          <i data-lucide="shopping-bag" class="w-5 h-5"></i> Your Shopping Bag
-        </h3>
-        <button onclick="toggleCartDrawer()" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-6 h-6"></i></button>
-      </div>
-      <div id="cartItemsList" class="space-y-4 max-h-96 overflow-y-auto">
-        <p class="text-xs text-slate-400 text-center py-8">Your cart is currently empty.</p>
-      </div>
-    </div>
-
-    <div class="border-t border-shooz-accentgold/20 pt-4">
-      <div class="flex justify-between items-center font-bold text-lg mb-4">
-        <span>Total:</span>
-        <span id="cartTotal" class="text-shooz-accentgold">$0</span>
-      </div>
-      <button onclick="checkoutAlert()" class="w-full py-3 bg-shooz-accentgold text-black font-bold rounded-xl hover:bg-yellow-500 transition-colors">Proceed to Checkout</button>
-    </div>
-  </div>
-
-  <footer class="glass border-t border-shooz-accentgold/20 pt-16 pb-8">
-    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-      <div>
-        <span class="font-serif text-2xl font-bold tracking-tight text-shooz-accentgold block mb-4">Shooz</span>
-        <p class="text-xs text-slate-400 leading-relaxed">Your ultimate destination for luxury footwear, designer boots, stiletto heel aids, and authentic international shoe brands.</p>
-      </div>
-      <div>
-        <h4 class="text-sm font-semibold text-shooz-accentgold uppercase tracking-wider mb-4">Quick Links</h4>
-        <ul class="space-y-2 text-xs text-slate-300">
-          <li><a href="#collections" class="hover:text-shooz-accentgold">A-Z Shoes Collection</a></li>
-          <li><a href="#brands" class="hover:text-shooz-accentgold">Brands (Zara, Bata, Adidas)</a></li>
-          <li><a href="#" onclick="toggleAiDrawer()" class="hover:text-shooz-accentgold">AI Stylist Guide</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="text-sm font-semibold text-shooz-accentgold uppercase tracking-wider mb-4">Contact Us</h4>
-        <ul class="space-y-2 text-xs text-slate-300">
-          <li>Email: support@shooz.com</li>
-          <li>Phone: +1 (800) 555-SHOOZ</li>
-          <li>Location: Luxury Avenue, NYC / Global Delivery</li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="text-sm font-semibold text-shooz-accentgold uppercase tracking-wider mb-4">Follow Us</h4>
-        <div class="flex gap-4">
-          <a href="#" class="p-2 glass rounded-full hover:text-shooz-accentgold"><i data-lucide="facebook" class="w-4 h-4"></i></a>
-          <a href="#" class="p-2 glass rounded-full hover:text-shooz-accentgold"><i data-lucide="twitter" class="w-4 h-4"></i></a>
-          <a href="#" class="p-2 glass rounded-full hover:text-shooz-accentgold"><i data-lucide="instagram" class="w-4 h-4"></i></a>
-          <a href="#" class="p-2 glass rounded-full hover:text-shooz-accentgold"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
-        </div>
-      </div>
-    </div>
-    <div class="border-t border-shooz-accentgold/10 max-w-7xl mx-auto px-6 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-400">
-      <p>© 2026 Shooz Footwear Store. All rights reserved.</p>
-      <p>Established Premium Quality & Original Brands</p>
-    </div>
-  </footer>
-
-  <script>
-    // Initialize Icons
-    lucide.createIcons();
-
-    // Footwear Data (A-Z Brands, Real Images, Boots, Heel Aids)
-    const products = [
-      { id: 1, name: "Zara Velvet Stiletto & Heel Aids", category: "heels", price: 290, brand: "Zara", img: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=800&q=80", desc: "Includes cushioned arch heel aids for maximum luxury comfort." },
-      { id: 2, name: "Zara Royal Leather Ankle Boot", category: "boots", price: 340, brand: "Zara", img: "https://images.unsplash.com/photo-1520639888713-7851133b1ed0?auto=format&fit=crop&w=800&q=80", desc: "Original high-shine premium leather boot." },
-      { id: 3, name: "Adidas Ultraboost Pro", category: "sneakers", price: 210, brand: "Adidas", img: "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=800&q=80", desc: "High performance athletic walking sneakers." },
-      { id: 4, name: "Puma Suede Classic", category: "sneakers", price: 180, brand: "Puma", img: "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?auto=format&fit=crop&w=800&q=80", desc: "Timeless original design with high durability." },
-      { id: 5, name: "Skechers Air-Cooled Memory Foam", category: "skechers", price: 160, brand: "Skechers", img: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80", desc: "Ultra-comfortable daily wear and fitness shoes." },
-      { id: 6, name: "Bata Executive Leather Boots", category: "boots", price: 195, brand: "Bata", img: "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?auto=format&fit=crop&w=800&q=80", desc: "Classic formal boots with durable grip." },
-      { id: 7, name: "Service Comfort Stride Heels", category: "heels", price: 140, brand: "Service", img: "https://images.unsplash.com/photo-1535043934128-cf0b28d52f95?auto=format&fit=crop&w=800&q=80", desc: "Ergonomic heels designed for long hours." },
-      { id: 8, name: "Chinese Designer Dragon Edition", category: "skechers", price: 260, brand: "Chinese Luxury", img: "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=800&q=80", desc: "Modern aesthetic street-style Chinese sneakers." }
-    ];
-
-    let cart = [];
-
-    // Render Product Cards
-    function renderProducts(items) {
-      const grid = document.getElementById('productGrid');
-      grid.innerHTML = items.map(p => `
-        <div class="glass rounded-2xl p-5 hover:border-shooz-accentgold transition-all duration-300 group flex flex-col justify-between">
-          <div>
-            <div class="relative h-64 bg-shooz-deepteal rounded-xl overflow-hidden mb-4">
-              <img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-              <span class="absolute top-3 left-3 bg-black/60 text-shooz-accentgold text-xs px-2.5 py-1 rounded-full border border-shooz-accentgold/30 font-semibold">${p.brand}</span>
+    <!-- Header / Hero -->
+    <header class="py-20 sm:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+            <span class="text-gold font-semibold tracking-widest uppercase text-sm">Luxury Footwear Collection 2026</span>
+            <h1 class="text-5xl sm:text-7xl font-extrabold tracking-tight text-gray-900 dark:text-white leading-tight">Step Into Elegance & Perfection</h1>
+            <p class="max-w-2xl mx-auto text-xl text-gray-600 dark:text-gray-400">Explore authentic premium footwear from top designers, heels, boots, and athletic wear.</p>
+            
+            <div class="pt-10">
+                <div class="relative max-w-lg mx-auto">
+                    <input type="text" id="searchInput" placeholder="Search brands, styles, or categories..." class="w-full pl-8 pr-16 py-5 rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gold transition-all shadow-2xl shadow-gray-200/50 dark:shadow-none text-lg">
+                    <button class="absolute right-3 top-3 p-3.5 bg-gold text-white rounded-full hover:bg-opacity-90 transition-colors"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
             </div>
-            <div class="flex justify-between items-start mb-2">
-              <h3 class="font-bold text-lg text-white">${p.name}</h3>
-              <span class="font-bold text-shooz-accentgold text-lg">$${p.price}</span>
-            </div>
-            <p class="text-xs text-slate-300 mb-4">${p.desc}</p>
-          </div>
-          <div class="space-y-2 pt-2 border-t border-shooz-accentgold/10">
-            <button onclick="addToCart('${p.name}', ${p.price}, '${p.img}')" class="w-full py-2.5 bg-shooz-accentgold hover:bg-yellow-500 text-black text-sm font-semibold rounded-xl transition-colors flex items-center justify-center gap-2">
-              <i data-lucide="shopping-bag" class="w-4 h-4"></i> Add To Cart
-            </button>
-            <button onclick="quickBuy('${p.name}', ${p.price}, '${p.img}')" class="w-full py-2 bg-shooz-deepteal hover:bg-white/10 text-shooz-accentgold text-xs font-semibold rounded-xl border border-shooz-accentgold/30 transition-colors">
-              Buy Now
-            </button>
-          </div>
         </div>
-      `).join('');
-      lucide.createIcons();
-    }
+    </header>
 
-    renderProducts(products);
+    <!-- Brands Section -->
+    <section id="brands" class="py-16 bg-white dark:bg-gray-900/50 border-y border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-sm font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-8">Authentic Original Brands Available</h2>
+            <div class="flex flex-wrap justify-center gap-12 opacity-70 dark:opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                <span class="text-2xl font-bold tracking-tighter">ZARA</span>
+                <span class="text-2xl font-bold tracking-tighter">BATA</span>
+                <span class="text-2xl font-bold tracking-tighter">SERVICE</span>
+                <span class="text-2xl font-bold tracking-tighter">ADIDAS</span>
+                <span class="text-2xl font-bold tracking-tighter">PUMA</span>
+                <span class="text-2xl font-bold tracking-tighter">SKECHERS</span>
+            </div>
+        </div>
+    </section>
 
-    // Filter Functionality
-    function filterCategory(cat) {
-      if (cat === 'all') renderProducts(products);
-      else renderProducts(products.filter(p => p.category === cat));
-    }
+    <!-- Catalog Section -->
+    <section id="catalog" class="py-20 sm:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+                <div>
+                    <h2 class="text-5xl font-bold text-gray-900 dark:text-white mb-4">A-Z Footwear Catalog</h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-400">Authentic real photos, original boots, sneakers, and designer heels.</p>
+                </div>
+                <!-- Filters -->
+                <div class="flex flex-wrap gap-3">
+                    <button onclick="filterCatalog('all')" class="px-6 py-3 rounded-full bg-gold text-white font-medium shadow-lg shadow-gold/20 transition-all filter-btn active">All</button>
+                    <button onclick="filterCatalog('heels')" class="px-6 py-3 rounded-full bg-white dark:bg-gray-800 hover:bg-gold hover:text-white dark:hover:bg-gold font-medium transition-all filter-btn border border-gray-200 dark:border-gray-700">Heels & Heel Aids</button>
+                    <button onclick="filterCatalog('boots')" class="px-6 py-3 rounded-full bg-white dark:bg-gray-800 hover:bg-gold hover:text-white dark:hover:bg-gold font-medium transition-all filter-btn border border-gray-200 dark:border-gray-700">Boots</button>
+                    <button onclick="filterCatalog('sneakers')" class="px-6 py-3 rounded-full bg-white dark:bg-gray-800 hover:bg-gold hover:text-white dark:hover:bg-gold font-medium transition-all filter-btn border border-gray-200 dark:border-gray-700">Sneakers</button>
+                </div>
+            </div>
 
-    // Cart Drawer Toggle & Logic
-    function toggleCartDrawer() {
-      document.getElementById('cartDrawer').classList.toggle('translate-x-full');
-    }
+            <!-- Product Grid -->
+            <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Products will be injected here by JavaScript -->
+            </div>
+        </div>
+    </section>
 
-    function addToCart(name, price, img) {
-      cart.push({ name, price, img });
-      updateCartUI();
-      toggleCartDrawer();
-    }
-
-    function quickBuy(name, price, img) {
-      addToCart(name, price, img);
-      alert(`Proceeding directly to Buy Now for: ${name}`);
-    }
-
-    function updateCartUI() {
-      document.getElementById('cartCount').innerText = cart.length;
-      const list = document.getElementById('cartItemsList');
-      const total = cart.reduce((sum, item) => sum + item.price, 0);
-      document.getElementById('cartTotal').innerText = `$${total}`;
-
-      if (cart.length === 0) {
-        list.innerHTML = `<p class="text-xs text-slate-400 text-center py-8">Your cart is currently empty.</p>`;
-        return;
-      }
-
-      list.innerHTML = cart.map((item, index) => `
-        <div class="flex items-center justify-between glass p-3 rounded-xl border border-shooz-accentgold/20">
-          <div class="flex items-center gap-3">
-            <img src="${item.img}" class="w-12 h-12 object-cover rounded-lg">
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800 py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-16 text-center md:text-left">
             <div>
-              <h4 class="text-xs font-bold text-white">${item.name}</h4>
-              <span class="text-xs text-shooz-accentgold font-semibold">$${item.price}</span>
+                <a href="#" class="text-3xl font-bold tracking-tighter text-gray-900 dark:text-white">Shooz</a>
+                <p class="mt-6 text-gray-600 dark:text-gray-400 font-medium leading-relaxed">Your ultimate destination for luxury footwear, designer boots, stiletto heel aids, and authentic international shoe brands.</p>
             </div>
-          </div>
-          <button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-300 text-xs">Remove</button>
+            <div>
+                <h3 class="font-bold text-xl mb-6">Quick Links</h3>
+                <ul class="space-y-4 font-medium text-gray-600 dark:text-gray-400">
+                    <li><a href="#" class="hover:text-gold transition-colors">A-Z Shoes Collection</a></li>
+                    <li><a href="#" class="hover:text-gold transition-colors">Brands (Zara, Bata, Adidas)</a></li>
+                    <li><a href="#" class="hover:text-gold transition-colors">AI Stylist Guide</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-bold text-xl mb-6">Contact Us</h3>
+                <ul class="space-y-4 text-gray-600 dark:text-gray-400 font-medium">
+                    <li>Email: support@shooz.com</li>
+                    <li>Phone: +1 (800) 555-SHOOZ</li>
+                    <li>Location: Luxury Avenue, NYC / Global Delivery</li>
+                </ul>
+            </div>
         </div>
-      `).join('');
-    }
+        <div class="text-center pt-20 mt-20 border-t border-gray-200 dark:border-gray-800 text-gray-500 font-medium">
+            <p>&copy; 2026 Shooz Footwear Store. All rights reserved. Established Premium Quality & Original Brands</p>
+        </div>
+    </footer>
 
-    function removeFromCart(index) {
-      cart.splice(index, 1);
-      updateCartUI();
-    }
+    <script>
+        // Data for products
+        const products = [
+             { id: 1, name: "Zara Velvet Stiletto", brand: "Zara", price: "$290", category: "heels", colors: ["Blue"], sizes: ["36-41"], image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=800&auto=format&fit=crop", desc: "Includes cushioned arch heel aids for maximum luxury comfort." },
+             { id: 2, name: "Zara Royal Leather Ankle Boot", brand: "Zara", price: "$340", category: "boots", colors: ["Brown"], sizes: ["39-44"], image: "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=800&auto=format&fit=crop", desc: "Original high-shine premium leather boot." },
+             { id: 3, name: "Adidas Ultraboost Pro", brand: "Adidas", price: "$210", category: "sneakers", colors: ["Red", "Black"], sizes: ["38-46"], image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&auto=format&fit=crop", desc: "High performance athletic walking sneakers." },
+             { id: 4, name: "Puma Suede Classic", brand: "Puma", price: "$180", category: "sneakers", colors: ["Brown"], sizes: ["38-45"], image: "https://images.unsplash.com/photo-1560343090-f0409e92791a?w=800&auto=format&fit=crop", desc: "Timeless original design with high durability." },
+             { id: 5, name: "Skechers Air-Cooled Memory Foam", brand: "Skechers", price: "$160", category: "sneakers", colors: ["Pastel"], sizes: ["36-42"], image: "https://images.unsplash.com/photo-1512374382149-233c53b6a57b?w=800&auto=format&fit=crop", desc: "Ultra-comfortable daily wear and fitness shoes." },
+             { id: 6, name: "Bata Executive Leather Boots", brand: "Bata", price: "$195", category: "boots", colors: ["Dark Brown"], sizes: ["39-44"], image: "https://images.unsplash.com/photo-1638661103758-c68962c0e86b?w=800&auto=format&fit=crop", desc: "Classic formal boots with durable grip." },
+             { id: 7, name: "Service Comfort Stride Heels", brand: "Service", price: "$140", category: "heels", colors: ["Nude"], sizes: ["36-41"], image: "https://images.unsplash.com/photo-1451125206180-a8d3e7003c27?w=800&auto=format&fit=crop", desc: "Ergonomic heels designed for long hours." },
+             { id: 8, name: "Chinese Designer Dragon Edition", brand: "Chinese Luxury", price: "$260", category: "sneakers", colors: ["Orange/White"], sizes: ["37-45"], image: "https://images.unsplash.com/photo-1600185365926-3a2ce3cdb5eb?w=800&auto=format&fit=crop", desc: "Modern aesthetic street-style Chinese sneakers." },
+        ];
 
-    function checkoutAlert() {
-      if (cart.length === 0) alert("Aapka cart khali hai!");
-      else alert("Order process ho raha hai! Thank you for shopping with Shooz.");
-    }
+        // Render products
+        function renderProducts(items) {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = '';
+            items.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'group bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-2xl shadow-gray-200/50 dark:shadow-none border border-gray-100 dark:border-gray-700 transition-all hover:-translate-y-2 duration-300';
+                card.innerHTML = `
+                    <div class="relative overflow-hidden aspect-[4/3]">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out">
+                        <span class="absolute top-5 left-5 bg-white/90 dark:bg-darkBg/90 backdrop-blur px-6 py-2 rounded-full text-xs font-bold tracking-widest uppercase text-gold">${product.brand}</span>
+                    </div>
+                    <div class="p-10 space-y-5">
+                        <div class="flex justify-between items-start">
+                            <div class="pr-4">
+                                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">${product.name}</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-2 leading-relaxed">${product.desc}</p>
+                            </div>
+                            <span class="text-3xl font-bold text-gold shrink-0">${product.price}</span>
+                        </div>
+                        <div class="space-y-4 pt-6 border-t border-gray-100 dark:border-gray-700">
+                             <div class="flex items-center text-sm">
+                                <span class="font-bold w-20 text-gray-900 dark:text-white">Colors:</span>
+                                <span class="text-gray-600 dark:text-gray-400">${product.colors.join(', ')}</span>
+                            </div>
+                            <div class="flex items-center text-sm">
+                                <span class="font-bold w-20 text-gray-900 dark:text-white">Size:</span>
+                                <span class="text-gray-600 dark:text-gray-400">${product.sizes.join(', ')}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
 
-    // AI Stylist Drawer Toggle & Smart Response Logic
-    function toggleAiDrawer() {
-      document.getElementById('aiDrawer').classList.toggle('translate-x-full');
-    }
+        // Filter Catalog
+        function filterCatalog(category) {
+            const btns = document.querySelectorAll('.filter-btn');
+            btns.forEach(btn => {
+                if (btn.onclick.toString().includes(category)) {
+                     btn.className = 'px-6 py-3 rounded-full bg-gold text-white font-medium shadow-lg shadow-gold/20 transition-all filter-btn border border-gold';
+                } else {
+                     btn.className = 'px-6 py-3 rounded-full bg-white dark:bg-gray-800 hover:bg-gold hover:text-white dark:hover:bg-gold font-medium transition-all filter-btn border border-gray-200 dark:border-gray-700';
+                }
+            });
 
-    function askAiAssistant() {
-      const input = document.getElementById('aiInput');
-      const chatBox = document.getElementById('aiChatBox');
-      const query = input.value.trim().toLowerCase();
+            if (category === 'all') {
+                renderProducts(products);
+            } else {
+                const filtered = products.filter(p => p.category === category);
+                renderProducts(filtered);
+            }
+        }
 
-      if (!query) return;
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const filtered = products.filter(p => 
+                p.name.toLowerCase().includes(term) || 
+                p.brand.toLowerCase().includes(term) ||
+                p.category.toLowerCase().includes(term)
+            );
+            renderProducts(filtered);
+        });
 
-      // Append User Query
-      chatBox.innerHTML += `<div class="bg-shooz-accentgold/20 p-2.5 rounded-lg text-right text-shooz-lightgold"><strong>Aap:</strong> ${input.value}</div>`;
+        // Theme Toggle
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
 
-      // Smart Assistant Recommendation Engine
-      let reply = "Aapke style ke hisab se Zara Velvet Stilettos (agar heels chahiye) ya Zara Royal Leather Boots (stylish look ke liye) best rahenge!";
-
-      if (query.includes("height") || query.includes("tall") || query.includes("short")) {
-        reply = "Agar height moderate/short hai toh high-heel stiletto aids ya ankle leather boots legs ko long aur structured look dete hain!";
-      } else if (query.includes("black") || query.includes("color")) {
-        reply = "Black ya dark outfits par Metallic Gold finish boots aur Zara Leather Stilettos extremely attractive lagte hain.";
-      } else if (query.includes("boot")) {
-        reply = "Zara aur Bata ke high-leather boots sabse durable aur stylish rahenge!";
-      }
-
-      setTimeout(() => {
-        chatBox.innerHTML += `<div class="bg-shooz-deepteal p-2.5 rounded-lg border border-shooz-accentgold/20"><strong>AI Stylist:</strong> ${reply}</div>`;
-        chatBox.scrollTop = chatBox.scrollHeight;
-      }, 500);
-
-      input.value = '';
-    }
-  </script>
+        // Initial render
+        renderProducts(products);
+    </script>
 </body>
 </html>
 
